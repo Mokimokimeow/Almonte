@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Chriz Darren Almonte | 3rd Year NCST Student & Front-End Developer Portfolio</title>
+  <meta name="description"
+    content="Official Undertale-themed 8-bit portfolio of Chriz Darren Almonte, 3rd-year BSIT student at National College of Science and Technology (NCST). Front-End Developer, UI/UX Designer, and Web App Creator.">
+  <meta name="keywords"
+    content="Chriz Darren Almonte, NCST student, National College of Science and Technology, portfolio, front-end developer, web developer, javascript, html, css, student portfolio, undertale, retro game">
+  <meta name="author" content="Chriz Darren Almonte">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Chriz Darren Almonte | NCST Student & Developer Portfolio">
+  <meta property="og:description"
+    content="Explore 4 interactive web projects, code languages, and 8-bit game mechanics by Chriz Darren Almonte, 3rd year student from NCST.">
+  <meta property="og:image" content="assets/images/chriz-profile.png">
+
+  <!-- Favicon (Undertale Soul) -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+  <!-- Dynamic Cyber Canvas Background -->
+  <canvas id="cyber-canvas"></canvas>
+
+  <!-- Floating Retro Menu Bar (Unobstructed Fullscreen View) -->
+  <div class="floating-menu-bar">
+    <button class="sidebar-toggle-btn" id="sidebar-toggle-btn" aria-label="Toggle Side Menu">
+      <span>❤️</span> [ MENU ]
+    </button>
+    <div class="quick-controls">
+      <button class="tool-btn" id="sound-toggle" title="Toggle Sound FX" aria-label="Toggle Sound Effects">
+        <span>🔊</span> Sound ON
+      </button>
+      <div class="theme-dropdown">
+        <button class="tool-btn" id="theme-toggle" title="Change Soul Theme" aria-label="Soul Theme Options">
+          <span>❤️</span> Soul
+        </button>
+        <div class="theme-palette" id="theme-palette">
+          <button class="color-option" data-theme-choice="default">
+            <span class="color-circle" style="background:#ff2b2b;"></span> ❤️ Determination
+          </button>
+          <button class="color-option" data-theme-choice="yellow">
+            <span class="color-circle" style="background:#ffff00;"></span> 💛 Justice
+          </button>
+          <button class="color-option" data-theme-choice="cyan">
+            <span class="color-circle" style="background:#00ffff;"></span> 💙 Patience
+          </button>
+          <button class="color-option" data-theme-choice="green">
+            <span class="color-circle" style="background:#00ff00;"></span> 💚 Kindness
+          </button>
+          <button class="color-option" data-theme-choice="purple">
+            <span class="color-circle" style="background:#d042ff;"></span> 💜 Perseverance
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- Collapsible Side Bar (Undertale Menu Drawer) -->
+  <aside class="sidebar" id="sidebar" aria-label="Main Navigation Sidebar">
+    <div class="sidebar-header">
+      <a href="#home" class="sidebar-logo" id="sidebar-logo">
+        CHRIZ<span class="text-neon">.DEV</span>
+        <span class="logo-dot"></span>
+      </a>
+      <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close Sidebar">CLOSE</button>
+    </div>
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <li><a href="#home" class="sidebar-link active" id="nav-link-home">Home</a></li>
+      <li><a href="#about" class="sidebar-link" id="nav-link-about">About Me</a></li>
+      <li><a href="#skills" class="sidebar-link" id="nav-link-skills">My Skills</a></li>
+      <li><a href="#projects" class="sidebar-link" id="nav-link-projects">Projects (4)</a></li>
+      <li><a href="#services" class="sidebar-link" id="nav-link-services">My Main Skills</a></li>
+      <li><a href="#contact" class="sidebar-link" id="nav-link-contact">Contact</a></li>
+    </ul>
+
+    <div class="sidebar-actions">
+      <button class="sidebar-tool-btn" id="sidebar-sound-toggle">
+        <span>Sound FX</span>
+        <span id="sidebar-sound-status">🔊 ON</span>
+      </button>
+
+      <div>
+        <div style="font-family:var(--font-heading); font-size:0.6rem; color:#888; margin-bottom:0.4rem;">SOUL TRAIT:
+        </div>
+        <div class="theme-palette-sidebar">
+          <button class="color-option" data-theme-choice="default">
+            <span class="color-circle" style="background:#ff2b2b;"></span> Determination
+          </button>
+          <button class="color-option" data-theme-choice="yellow">
+            <span class="color-circle" style="background:#ffff00;"></span> Justice
+          </button>
+          <button class="color-option" data-theme-choice="cyan">
+            <span class="color-circle" style="background:#00ffff;"></span> Patience
+          </button>
+          <button class="color-option" data-theme-choice="green">
+            <span class="color-circle" style="background:#00ff00;"></span> Kindness
+          </button>
+          <button class="color-option" data-theme-choice="purple">
+            <span class="color-circle" style="background:#d042ff;"></span> Perseverance
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      NCST • Class of 2026<br>
+      Dasmariñas, Cavite
+    </div>
+  </aside>
+
+  <main>
+    <!-- ===================================================================
+         HERO SECTION (Undertale Encounter Screen)
+         =================================================================== -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="status-indicator"></span>
+            <span>3rd Year BSIT • NCST Student</span>
+          </div>
+
+          <h1 class="hero-title">
+            CHRIZ <span class="text-neon">DARREN ALMONTE</span>
+          </h1>
+
+          <div class="hero-typed-wrapper">
+            <span>I'm</span>
+            <span class="typed-text"></span>
+            <span class="cursor">|</span>
+          </div>
+
+          <p class="hero-desc">
+            Passionate 3rd-year Information Technology student from <strong>National College of Science and Technology
+              (NCST)</strong>. Specializing in modern front-end web development, clean coding languages, and crafting
+            immersive retro-pixel interactive user experiences.
+          </p>
+
+          <div class="hero-links">
+            <a href="#projects" class="btn-secondary" id="btn-hero-projects">
+              <span>⚡</span> Explore 4 Projects
+            </a>
+            <a href="#contact" class="btn-secondary" id="btn-hero-contact">
+              <span>❤️</span> Get In Touch
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-image-glow"></div>
+          <div class="hero-image-wrapper" id="hero-avatar-card">
+            <img src="assets/images/chriz-profile.png" alt="Chriz Darren Almonte - NCST Developer" class="hero-img"
+              id="hero-avatar-img">
+
+            <!-- Interactive Floating Chips -->
+            <div class="floating-chip top-left">
+              <span class="chip-icon">🎓</span>
+              <div>
+                <div class="chip-label">College</div>
+                <div class="chip-value">NCST Cavite</div>
+              </div>
+            </div>
+
+            <div class="floating-chip bottom-right">
+              <span class="chip-icon">❤️</span>
+              <div>
+                <div class="chip-label">Year Level</div>
+                <div class="chip-value">3rd Year IT</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         ABOUT ME SECTION (NCST Student Focus)
+         =================================================================== -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">About Me</span>
+          <h2 class="section-title">Developer & <span class="text-neon">Designer</span></h2>
+          <div class="title-line"></div>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-photo-card" id="about-card-workspace">
+            <img src="assets/images/ncst-campus.jpg"
+              alt="National College of Science and Technology (NCST) Dasmariñas Campus">
+            <div class="about-ncst-badge">
+              <div>
+                <div class="ncst-logo-text">NCST • BSIT 2026</div>
+                <div class="ncst-sub">National College of Science and Technology</div>
+              </div>
+              <span class="text-neon" style="font-size:1.5rem;">❤️</span>
+            </div>
+          </div>
+
+          <div class="about-info-text">
+            <div class="about-subtitle">* Hello World! I'm Chriz Darren Almonte.</div>
+            <h3 class="about-headline">Turning Complex Ideas Into High-Performance Digital Experiences.</h3>
+
+            <p class="about-bio">
+              I am currently a <strong>3rd year Bachelor of Science in Information Technology (BSIT)</strong> student at
+              the <strong>National College of Science and Technology (NCST)</strong> in Dasmariñas, Cavite. My
+              educational journey has equipped me with solid foundations in computer algorithms, database architecture,
+              and modern programming paradigms.
+            </p>
+            <p class="about-bio">
+              Beyond the classroom, I am deeply driven by the craft of modern front-end web engineering. I believe
+              software should not only execute reliably under the hood but should also thrill users with fluid
+              micro-interactions, responsive design aesthetics, and intuitive usability.
+            </p>
+
+            <div class="about-info-grid">
+              <div class="info-item">
+                <div class="info-label">College / University</div>
+                <div class="info-val">NCST (National College of Science and Tech)</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Student & Year</div>
+                <div class="info-val">Chriz Darren Almonte • 3rd Year BSIT</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Primary Stack</div>
+                <div class="info-val">HTML5, CSS, JavaScript, React, Python, PHP</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Status</div>
+                <div class="info-val" style="color:#00ff00;">● Open for Internship & Projects</div>
+              </div>
+            </div>
+
+            <a href="#contact" class="btn-primary" id="btn-about-talk">Let's Talk</a>
+          </div>
+        </div>
+
+        <!-- Undertale Stats Counter Row -->
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-num">3rd</div>
+            <div class="stat-label">Year at NCST</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">4</div>
+            <div class="stat-label">Featured Web Projects</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">8+</div>
+            <div class="stat-label">Code Languages & Tools</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">DETERMINATION</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         MY SKILLS & CODE LANGUAGES (Undertale HP Bars & Code Sandbox)
+         =================================================================== -->
+    <section class="section skills-section" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Core Competencies</span>
+          <h2 class="section-title">My <span class="text-neon">Skills</span> & Code Languages</h2>
+          <p class="section-desc">
+            A comprehensive overview of programming languages, libraries, and frameworks I use to build robust web
+            applications at NCST and beyond.
+          </p>
+          <div class="title-line"></div>
+        </div>
+
+        <div class="skills-layout">
+          <!-- Left: Skills Progress Bars (Undertale HP Style) -->
+          <div class="skills-bar-wrapper">
+            <h3 class="skills-column-title"><span>📊</span> Technical Proficiency</h3>
+
+            <div class="skills-bar-container">
+              <div class="skill-bar-item">
+                <div class="skill-bar-info">
+                  <span class="skill-name"><span>🌐</span> HTML5 & Semantic Web</span>
+                  <span class="skill-percent">100%</span>
+                </div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-percent="100%"></div>
+                </div>
+              </div>
+
+              <div class="skill-bar-item">
+                <div class="skill-bar-info">
+                  <span class="skill-name"><span>🎨</span> CSS, Flexbox & Grid Animations</span>
+                  <span class="skill-percent">95%</span>
+                </div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-percent="95%"></div>
+                </div>
+              </div>
+
+              <div class="skill-bar-item">
+                <div class="skill-bar-info">
+                  <span class="skill-name"><span>⚡</span> JavaScript (ES6+ & DOM Manipulation)</span>
+                  <span class="skill-percent">90%</span>
+                </div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-percent="90%"></div>
+                </div>
+              </div>
+
+              <div class="skill-bar-item">
+                <div class="skill-bar-info">
+                  <span class="skill-name"><span>⚛️</span> React.js & Component Architectures</span>
+                  <span class="skill-percent">85%</span>
+                </div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-percent="85%"></div>
+                </div>
+              </div>
+
+              <div class="skill-bar-item">
+                <div class="skill-bar-info">
+                  <span class="skill-name"><span>🐘</span> PHP & MySQL Relational Databases</span>
+                  <span class="skill-percent">80%</span>
+                </div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-percent="80%"></div>
+                </div>
+              </div>
+
+              <div class="skill-bar-item">
+                <div class="skill-bar-info">
+                  <span class="skill-name"><span>🐍</span> Python & Data Logic</span>
+                  <span class="skill-percent">75%</span>
+                </div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-percent="75%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tech Stack Pills -->
+            <div class="tech-pills-grid">
+              <span class="tech-pill">Git & GitHub</span>
+              <span class="tech-pill">Bootstrap 5</span>
+              <span class="tech-pill">TailwindCSS</span>
+              <span class="tech-pill">Figma Design</span>
+              <span class="tech-pill">RESTful APIs</span>
+              <span class="tech-pill">VS Code</span>
+              <span class="tech-pill">Responsive Design (PC & CP)</span>
+              <span class="tech-pill">SQL / MariaDB</span>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Live Code Playground -->
+          <div class="playground-wrapper">
+            <h3 class="skills-column-title"><span>💻</span> Interactive Code Sandbox</h3>
+
+            <div class="playground-box" id="code-sandbox">
+              <div class="playground-header">
+                <div class="window-dots">
+                  <span class="window-dot"></span>
+                  <span class="window-dot"></span>
+                  <span class="window-dot"></span>
+                </div>
+
+                <div class="lang-tabs" id="code-tabs">
+                  <button class="lang-tab active" data-lang="js" id="tab-js">JavaScript</button>
+                  <button class="lang-tab" data-lang="python" id="tab-python">Python</button>
+                  <button class="lang-tab" data-lang="htmlcss" id="tab-htmlcss">HTML/CSS</button>
+                  <button class="lang-tab" data-lang="php" id="tab-php">PHP/SQL</button>
+                </div>
+
+                <div class="playground-actions">
+                  <button class="btn-run-code" id="btn-run-code">
+                    <span>▶</span> Run Code
+                  </button>
+                </div>
+              </div>
+
+              <pre class="code-editor-area" id="code-display"></pre>
+
+              <div class="console-output-box">
+                <div class="console-title">
+                  <span>Virtual Execution Console</span>
+                  <span class="text-neon" style="font-size:0.65rem;">● Live Interpreter</span>
+                </div>
+                <div class="console-output-text" id="console-output"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         FEATURED PROJECTS SECTION (Now Featuring 4 Projects!)
+         =================================================================== -->
+    <section class="section projects-section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Selected Works (4 Projects)</span>
+          <h2 class="section-title">Featured <span class="text-neon">Projects</span></h2>
+          <p class="section-desc">
+            A curated showcase of 4 real-world web apps, academic capstone systems at NCST, and retro game interactive
+            concepts.
+          </p>
+          <div class="title-line"></div>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="projects-filters">
+          <button class="filter-btn active" data-filter="all">All (4)</button>
+          <button class="filter-btn" data-filter="ncst">NCST Academic</button>
+          <button class="filter-btn" data-filter="webapp">Web Apps</button>
+          <button class="filter-btn" data-filter="uiux">UI/UX & Games</button>
+        </div>
+
+        <!-- 4 Projects Grid -->
+        <div class="projects-grid">
+          <!-- Project 1: BSLA Admissions & Student Portal -->
+          <article class="project-card" data-category="ncst webapp">
+            <div class="project-img-wrapper">
+              <img src="assets/images/project-bsla-portal.png"
+                alt="Biringan Science & Leadership Academy Admissions and Student Portal (BSLA)">
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="project-tag">Web Portal</span>
+                <span class="project-tag">PHP & MySQL</span>
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">DepEd Portal</span>
+              </div>
+              <h3 class="project-title">1. BSLA Admissions & Student Portal</h3>
+              <p class="project-desc">
+                An official full-featured paperless admissions and student enrollment system for Biringan Science &
+                Leadership Academy (BSLA). Supports Junior/Senior High online applications, voucher verification, and
+                real-time portal tracking.
+              </p>
+              <div class="project-actions">
+                <button class="btn-card primary btn-view-details" data-project-id="1">Quick View</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: NCST Event Tracker Attendance for Incentives -->
+          <article class="project-card" data-category="ncst webapp uiux">
+            <div class="project-img-wrapper">
+              <img src="assets/images/project-ncst-foundation.png" alt="NCST Event Tracker Attendance for Incentives">
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="project-tag">Attendance Tracking</span>
+                <span class="project-tag">Student Incentives</span>
+                <span class="project-tag">QR Verification</span>
+                <span class="project-tag">JavaScript / Web</span>
+              </div>
+              <h3 class="project-title">2. NCST Event Tracker Attendance for Incentives</h3>
+              <p class="project-desc">
+                A campus-wide event check-in and attendance monitoring system designed for NCST. Automates student
+                attendance logging during institutional events, calculates and credits academic incentive points, and
+                provides real-time verification for instructors and student affairs.
+              </p>
+              <div class="project-actions">
+                <button class="btn-card primary btn-view-details" data-project-id="2">Quick View</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Cooking Quest (Jerjerkings) -->
+          <article class="project-card" data-category="webapp uiux">
+            <div class="project-img-wrapper">
+              <img src="assets/images/project-cookingquest.png" alt="Cooking Quest Jerjerkings Game">
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="project-tag">Game Development</span>
+                <span class="project-tag">Python / Web</span>
+                <span class="project-tag">UI Design</span>
+                <span class="project-tag">Game Engine</span>
+              </div>
+              <h3 class="project-title">3. Cooking Quest (Jerjerkings)</h3>
+              <p class="project-desc">
+                An interactive culinary adventure game featuring retro menus, audio settings, interactive cooking
+                encounters, and high-score tracking built by team Jerjerkings in 2026.
+              </p>
+              <div class="project-actions">
+                <button class="btn-card primary btn-view-details" data-project-id="3">Quick View</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4: JavaMinesweeper -->
+          <article class="project-card" data-category="webapp uiux">
+            <div class="project-img-wrapper">
+              <img src="assets/images/project-minesweeper.png" alt="JavaMinesweeper Multi-User Game App">
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="project-tag">Java / OOP</span>
+                <span class="project-tag">Minesweeper</span>
+                <span class="project-tag">User Profiles</span>
+                <span class="project-tag">Leaderboards</span>
+              </div>
+              <h3 class="project-title">4. JavaMinesweeper</h3>
+              <p class="project-desc">
+                A custom logic implementation of Minesweeper featuring animated floating mine particle canvas,
+                multi-user profile switcher ('Current User: monkey'), persistent high scores, and responsive game
+                states.
+              </p>
+              <div class="project-actions">
+                <button class="btn-card primary btn-view-details" data-project-id="4">Quick View</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         MY MAIN SKILLS / SERVICES SECTION
+         =================================================================== -->
+    <section class="section services-section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Core Specializations</span>
+          <h2 class="section-title">My Main <span class="text-neon">Skills</span></h2>
+          <p class="section-desc">
+            Bringing academic engineering discipline together with commercial-grade web design standards.
+          </p>
+          <div class="title-line"></div>
+        </div>
+
+        <div class="services-grid">
+          <!-- Card 1: Landing Page Design -->
+          <div class="service-card">
+            <div class="service-icon-box">🚀</div>
+            <h3 class="service-title">Landing Page Design</h3>
+            <p class="service-desc">
+              High-converting, visually magnetic landing pages crafted with modern dark aesthetics, seamless animations,
+              and fast mobile responsiveness that captures immediate audience engagement.
+            </p>
+            <button class="btn-service-read"
+              onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Read More</button>
+          </div>
+
+          <!-- Card 2: PSD, XD and FIGMA TO HTML -->
+          <div class="service-card">
+            <div class="service-icon-box">📐</div>
+            <h3 class="service-title">Figma & Design to HTML</h3>
+            <p class="service-desc">
+              Pixel-perfect implementation of Figma, Adobe XD, or UI designs into clean, semantic HTML5, modern CSS
+              variables, and fluid JavaScript interactions with 100% fidelity.
+            </p>
+            <button class="btn-service-read"
+              onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Read More</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         CONTACT SECTION
+         =================================================================== -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Let's Connect</span>
+          <h2 class="section-title">Get In <span class="text-neon">Touch</span></h2>
+          <p class="section-desc">
+            Have a project in mind, need a student capstone collaborator, or looking for a passionate 3rd-year NCST
+            intern? Drop a line below!
+          </p>
+          <div class="title-line"></div>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Left Info Cards -->
+          <div class="contact-info-panel">
+            <div class="contact-card-item">
+              <div class="contact-icon">📍</div>
+              <div>
+                <div class="contact-item-title">Location & Campus</div>
+                <div class="contact-item-val">NCST, Dasmariñas, Cavite, PH</div>
+              </div>
+            </div>
+
+            <div class="contact-card-item">
+              <div class="contact-icon">📧</div>
+              <div>
+                <div class="contact-item-title">Direct Email</div>
+                <div class="contact-item-val"><a href="mailto:almonte.chrizdarren@ncst.edu.ph"
+                    style="color:inherit; text-decoration:none;">almonte.chrizdarren@ncst.edu.ph</a></div>
+              </div>
+            </div>
+
+            <div class="contact-card-item">
+              <div class="contact-icon">🎓</div>
+              <div>
+                <div class="contact-item-title">Academic Affiliation</div>
+                <div class="contact-item-val">3rd Year BSIT • NCST Class of 2026</div>
+              </div>
+            </div>
+
+            <div class="contact-card-item">
+              <div class="contact-icon">💼</div>
+              <div>
+                <div class="contact-item-title">Current Status</div>
+                <div class="contact-item-val" style="color:var(--primary);">Available for Freelance & Internships</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Interactive Contact Form -->
+          <form class="contact-form" id="contact-form">
+            <div class="form-group">
+              <label class="form-label">Service of Interest</label>
+              <div class="service-pills">
+                <button type="button" class="service-pill-btn active">Landing Page</button>
+                <button type="button" class="service-pill-btn">Figma to Code</button>
+                <button type="button" class="service-pill-btn">Web App / System</button>
+                <button type="button" class="service-pill-btn">NCST Project / Collab</button>
+              </div>
+              <input type="hidden" id="selected-service" value="Landing Page">
+            </div>
+
+            <div class="form-group">
+              <label for="contact-name" class="form-label">Your Full Name</label>
+              <input type="text" id="contact-name" class="form-input" placeholder="e.g. Alex Rivera" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-email" class="form-label">Your Email Address</label>
+              <input type="email" id="contact-email" class="form-input" placeholder="name@domain.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message" class="form-label">Your Message or Project Details</label>
+              <textarea id="contact-message" class="form-textarea"
+                placeholder="Tell me about your idea, requirements, or timeframe..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary" id="btn-submit-contact" style="width: 100%;">
+              <span>❤️</span> Send Message to Chriz
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================================================================
+       FOOTER
+       =================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-name">Chriz Darren Almonte</div>
+      <p class="footer-desc">
+        3rd Year Information Technology Student at National College of Science and Technology (NCST). Dedicated to
+        building clean, aesthetic, and high-performance web applications.
+      </p>
+
+      <div class="social-links">
+        <a href="https://github.com/chriz-almonte" class="social-circle" target="_blank" rel="noopener noreferrer"
+          title="GitHub" aria-label="GitHub Profile">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+          </svg>
+        </a>
+        <a href="https://linkedin.com" class="social-circle" target="_blank" rel="noopener noreferrer" title="LinkedIn"
+          aria-label="LinkedIn Profile">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+          </svg>
+        </a>
+        <a href="https://instagram.com" class="social-circle" target="_blank" rel="noopener noreferrer"
+          title="Instagram" aria-label="Instagram Profile">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+          </svg>
+        </a>
+        <a href="https://twitter.com" class="social-circle" target="_blank" rel="noopener noreferrer"
+          title="Twitter / X" aria-label="Twitter Profile">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="footer-copyright">
+        &copy; <span id="current-year">2026</span> Chriz Darren Almonte • National College of Science and Technology
+        (NCST). All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================
+       PROJECT QUICK VIEW MODAL
+       =================================================================== -->
+  <div class="modal-overlay" id="project-modal" aria-hidden="true" role="dialog">
+    <div class="modal-box">
+      <button class="modal-close-btn" aria-label="Close Project Modal">&times;</button>
+      <div style="border:3px solid #ffffff; overflow:hidden; margin-bottom:1.25rem; max-height:280px;">
+        <img id="modal-img" src="" alt="Project Preview Screenshot"
+          style="width:100%; height:100%; object-fit:contain; background:#000; image-rendering:auto !important;">
+      </div>
+      <div
+        style="font-family:var(--font-heading); font-size:0.7rem; color:var(--primary); text-transform:uppercase; margin-bottom:0.4rem;"
+        id="modal-category"></div>
+      <h3 style="font-family:var(--font-heading); font-size:clamp(1rem, 2.5vw, 1.4rem); margin-bottom:0.8rem;"
+        id="modal-title"></h3>
+      <div id="modal-tags" style="display:flex; flex-wrap:wrap; gap:0.35rem; margin-bottom:1rem;"></div>
+      <p style="font-family:var(--font-body); color:#cccccc; font-size:1.3rem; line-height:1.45; margin-bottom:1.4rem;"
+        id="modal-desc"></p>
+
+      <h4 style="font-family:var(--font-heading); font-size:0.75rem; margin-bottom:0.6rem; color:#ffff00;">* Key
+        Engineering Highlights:</h4>
+      <ul id="modal-highlights"
+        style="font-family:var(--font-body); color:#dddddd; font-size:1.25rem; padding-left:1.2rem; line-height:1.5; margin-bottom:0.5rem; list-style:none;">
+      </ul>
+    </div>
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
