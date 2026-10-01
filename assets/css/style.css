@@ -2043,3 +2043,14 @@ body.sidebar-active {
     text-align: center;
   }
 }
+
+.btn-facebook:hover {
+  background: #1877f2 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  box-shadow: 4px 4px 0px var(--primary) !important;
+  transform: translateY(-2px);
+}
+.btn-facebook:hover svg {
+  color: #ffffff !important;
+}
