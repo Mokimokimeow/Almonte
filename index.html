@@ -624,23 +624,26 @@
 
             <div class="form-group">
               <label for="contact-name" class="form-label">Your Full Name</label>
-              <input type="text" id="contact-name" name="name" class="form-input" placeholder="e.g. Alex Rivera" required>
+              <input type="text" id="contact-name" name="name" class="form-input" placeholder="e.g. Alex Rivera" minlength="2" maxlength="60" required>
             </div>
 
             <div class="form-group">
               <label for="contact-email" class="form-label">Your Email Address</label>
-              <input type="email" id="contact-email" name="email" class="form-input" placeholder="name@domain.com" required>
+              <input type="email" id="contact-email" name="email" class="form-input" placeholder="name@domain.com" maxlength="80" required>
             </div>
 
             <div class="form-group">
               <label for="contact-message" class="form-label">Your Message or Project Details</label>
               <textarea id="contact-message" name="message" class="form-textarea"
-                placeholder="Tell me about your idea, requirements, or timeframe..." required></textarea>
+                placeholder="Tell me about your idea, requirements, or timeframe..." minlength="10" maxlength="1500" required></textarea>
             </div>
 
             <button type="submit" class="btn-primary" id="btn-submit-contact" style="width: 100%;">
               <span>❤️</span> Send Message to Chriz
             </button>
+            <div id="contact-cooldown-msg" style="font-family:var(--font-heading); font-size:0.6rem; color:#888888; text-align:center; margin-top:0.6rem; display:none;">
+              * Anti-Spam Protected: 60s cooldown between messages
+            </div>
           </form>
         </div>
       </div>

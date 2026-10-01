@@ -668,21 +668,74 @@ function initProjectModal() {
 }
 
 /* ===================================================================
-   11. INTERACTIVE CONTACT FORM (Web3Forms API Integration)
+   11. INTERACTIVE CONTACT FORM (Web3Forms API + Anti-Spam Protection)
    =================================================================== */
 function initContactForm() {
   const contactForm = document.getElementById('contact-form');
   if (!contactForm) return;
 
+  const COOLDOWN_SECONDS = 60; // 60 seconds anti-spam cooldown between submissions
+  const cooldownMsgEl = document.getElementById('contact-cooldown-msg');
+
+  // Check initial cooldown status on load
+  function checkCooldownStatus() {
+    const lastTime = localStorage.getItem('lastContactSubmissionTime');
+    if (!lastTime) return 0;
+    const elapsed = Math.floor((Date.now() - parseInt(lastTime, 10)) / 1000);
+    const remaining = COOLDOWN_SECONDS - elapsed;
+    return remaining > 0 ? remaining : 0;
+  }
+
+  const remainingOnLoad = checkCooldownStatus();
+  if (remainingOnLoad > 0 && cooldownMsgEl) {
+    cooldownMsgEl.style.display = 'block';
+    cooldownMsgEl.textContent = `* Anti-Spam: Please wait ${remainingOnLoad}s before submitting again.`;
+  }
+
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // 1. Anti-Spam: Check cooldown rate limit
+    const remainingSeconds = checkCooldownStatus();
+    if (remainingSeconds > 0) {
+      showToast(`* Anti-Spam: Please wait ${remainingSeconds}s before sending another message!`);
+      if (cooldownMsgEl) {
+        cooldownMsgEl.style.display = 'block';
+        cooldownMsgEl.textContent = `* Anti-Spam: Cooldown active (${remainingSeconds}s remaining)`;
+      }
+      return;
+    }
+
+    // 2. Validate Inputs
     const name = document.getElementById('contact-name').value.trim();
     const email = document.getElementById('contact-email').value.trim();
     const message = document.getElementById('contact-message').value.trim();
 
     if (!name || !email || !message) {
       showToast('* Please complete all fields!');
+      return;
+    }
+
+    if (name.length < 2) {
+      showToast('* Name must be at least 2 characters.');
+      return;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      showToast('* Please enter a valid email address.');
+      return;
+    }
+
+    if (message.length < 10) {
+      showToast('* Message must be at least 10 characters long.');
+      return;
+    }
+
+    // 3. Anti-Spam: Prevent identical duplicate submissions
+    const lastMessage = localStorage.getItem('lastContactMessageText');
+    if (lastMessage && lastMessage.toLowerCase() === message.toLowerCase()) {
+      showToast('* Duplicate message detected. Please write a new message.');
       return;
     }
 
@@ -707,9 +760,18 @@ function initContactForm() {
       const result = await response.json();
 
       if (response.status === 200 && result.success) {
+        // Record timestamp and message for anti-spam tracking
+        localStorage.setItem('lastContactSubmissionTime', Date.now().toString());
+        localStorage.setItem('lastContactMessageText', message);
+
         contactForm.reset();
         showToast(`* Thank you, ${name}! Your message was transmitted.`);
         playSound('success');
+
+        if (cooldownMsgEl) {
+          cooldownMsgEl.style.display = 'block';
+          cooldownMsgEl.textContent = `* Message sent! Anti-spam cooldown active for 60s.`;
+        }
       } else {
         showToast(result.message || '* Submission failed. Please check your Web3Forms access key.');
       }
