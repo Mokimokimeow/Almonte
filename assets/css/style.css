@@ -8,11 +8,13 @@
 
 :root {
   /* Undertale Iconic Palette */
-  --primary: #ff2b2b;        /* ❤️ Determination Red Soul */
+  --primary: #ff2b2b;
+  /* ❤️ Determination Red Soul */
   --primary-rgb: 255, 43, 43;
   --primary-glow: rgba(255, 43, 43, 0.4);
   --primary-light: #ff6b6b;
-  --secondary: #ffff00;      /* 💛 Justice Yellow / HP Bar Gold */
+  --secondary: #ffff00;
+  /* 💛 Justice Yellow / HP Bar Gold */
   --secondary-rgb: 255, 255, 0;
   --secondary-glow: rgba(255, 255, 0, 0.35);
 
@@ -24,7 +26,8 @@
   --border-white: #ffffff;
   --border-subtle: #333333;
   --border-glow: #ff2b2b;
-  --battle-orange: #ff9900;  /* Undertale Battle Button Orange */
+  --battle-orange: #ff9900;
+  /* Undertale Battle Button Orange */
 
   /* Pixel Typography */
   --font-heading: 'Press Start 2P', monospace;
@@ -37,7 +40,8 @@
 
 /* Undertale Soul Color Modes */
 body[data-theme="cyan"] {
-  --primary: #00ffff;        /* 💙 Patience / Integrity Cyan */
+  --primary: #00ffff;
+  /* 💙 Patience / Integrity Cyan */
   --primary-rgb: 0, 255, 255;
   --primary-glow: rgba(0, 255, 255, 0.4);
   --primary-light: #70ffff;
@@ -45,7 +49,8 @@ body[data-theme="cyan"] {
 }
 
 body[data-theme="purple"] {
-  --primary: #d042ff;        /* 💜 Perseverance Purple */
+  --primary: #d042ff;
+  /* 💜 Perseverance Purple */
   --primary-rgb: 208, 66, 255;
   --primary-glow: rgba(208, 66, 255, 0.4);
   --primary-light: #e388ff;
@@ -53,7 +58,8 @@ body[data-theme="purple"] {
 }
 
 body[data-theme="green"] {
-  --primary: #00ff00;        /* 💚 Kindness Green */
+  --primary: #00ff00;
+  /* 💚 Kindness Green */
   --primary-rgb: 0, 255, 0;
   --primary-glow: rgba(0, 255, 0, 0.4);
   --primary-light: #66ff66;
@@ -61,7 +67,8 @@ body[data-theme="green"] {
 }
 
 body[data-theme="yellow"] {
-  --primary: #ffff00;        /* 💛 Justice Yellow */
+  --primary: #ffff00;
+  /* 💛 Justice Yellow */
   --primary-rgb: 255, 255, 0;
   --primary-glow: rgba(255, 255, 0, 0.4);
   --primary-light: #ffff88;
@@ -69,7 +76,9 @@ body[data-theme="yellow"] {
 }
 
 /* Base Reset & Prevent Horizontal Overflow */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -108,7 +117,10 @@ body::after {
   content: " ";
   display: block;
   position: fixed;
-  top: 0; left: 0; bottom: 0; right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%);
   background-size: 100% 4px;
   z-index: 50;
@@ -143,7 +155,10 @@ a {
   cursor: pointer;
 }
 
-button, input, textarea, select {
+button,
+input,
+textarea,
+select {
   font-family: inherit;
   border: none;
   outline: none;
@@ -346,13 +361,15 @@ body.sidebar-active {
   transform: translateX(-4px);
 }
 
-.sidebar-link:hover, .sidebar-link.active {
+.sidebar-link:hover,
+.sidebar-link.active {
   border-color: #ffffff;
   background: #0d0d0d;
   color: #ffff00;
 }
 
-.sidebar-link:hover::before, .sidebar-link.active::before {
+.sidebar-link:hover::before,
+.sidebar-link.active::before {
   opacity: 1;
   transform: translateX(0);
 }
@@ -663,8 +680,15 @@ body.sidebar-active {
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 .hero-desc {
@@ -1122,7 +1146,8 @@ body.sidebar-active {
   white-space: nowrap;
 }
 
-.lang-tab.active, .lang-tab:hover {
+.lang-tab.active,
+.lang-tab:hover {
   border-color: #ffffff;
   color: #ffff00;
 }
@@ -1313,7 +1338,8 @@ body.sidebar-active {
   white-space: nowrap;
 }
 
-.filter-btn:hover, .filter-btn.active {
+.filter-btn:hover,
+.filter-btn.active {
   background: #ffffff;
   color: #000000;
   box-shadow: 3px 3px 0px var(--primary);
@@ -1622,7 +1648,8 @@ body.sidebar-active {
   color: #ffffff;
 }
 
-.form-input, .form-textarea {
+.form-input,
+.form-textarea {
   background: #000000;
   border: 3px solid #ffffff;
   padding: 0.75rem 0.9rem;
@@ -1633,7 +1660,8 @@ body.sidebar-active {
   min-width: 0;
 }
 
-.form-input:focus, .form-textarea:focus {
+.form-input:focus,
+.form-textarea:focus {
   border-color: #ffff00;
   box-shadow: 3px 3px 0px #ffff00;
 }
@@ -1661,7 +1689,8 @@ body.sidebar-active {
   white-space: nowrap;
 }
 
-.service-pill-btn.active, .service-pill-btn:hover {
+.service-pill-btn.active,
+.service-pill-btn:hover {
   background: #ffffff;
   color: #000000;
 }
@@ -1881,7 +1910,8 @@ body.sidebar-active {
   }
 
   .quick-controls {
-    display: none; /* Accessible in the sidebar menu */
+    display: none;
+    /* Accessible in the sidebar menu */
   }
 
   .section {
@@ -1955,8 +1985,10 @@ body.sidebar-active {
     padding: 1.25rem 1rem;
   }
 
-  .form-input, .form-textarea {
-    font-size: 16px; /* Prevents auto-zoom on mobile browsers */
+  .form-input,
+  .form-textarea {
+    font-size: 16px;
+    /* Prevents auto-zoom on mobile browsers */
   }
 
   .modal-box {
