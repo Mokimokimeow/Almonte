@@ -5,7 +5,6 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initAudioEngine();
   initThemeSwitcher();
   initSidebar();
   initPixelStarCanvas();
@@ -15,112 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
   initProjectFilters();
   initProjectModal();
   initContactForm();
-  initServicePills();
   const yearEl = document.getElementById('current-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
 
 /* ===================================================================
-   1. AUTHENTIC 8-BIT CHIPTUNE SOUND ENGINE (Undertale Square Waves)
+   1. SOUND ENGINE (Disabled)
    =================================================================== */
-let audioCtx = null;
-let soundEnabled = true;
-
-function initAudioEngine() {
-  const soundToggleBtn = document.getElementById('sound-toggle');
-  const sidebarSoundToggle = document.getElementById('sidebar-sound-toggle');
-  const sidebarSoundStatus = document.getElementById('sidebar-sound-status');
-
-  function updateSoundUI() {
-    if (soundToggleBtn) {
-      soundToggleBtn.innerHTML = soundEnabled 
-        ? '<span>🔊</span> Sound ON' 
-        : '<span>🔇</span> Sound OFF';
-    }
-    if (sidebarSoundStatus) {
-      sidebarSoundStatus.textContent = soundEnabled ? '🔊 ON' : '🔇 OFF';
-    }
-  }
-
-  function toggleSound() {
-    soundEnabled = !soundEnabled;
-    updateSoundUI();
-    showToast(soundEnabled ? '8-Bit Chiptune FX ON' : '8-Bit Chiptune FX OFF');
-    if (soundEnabled) playSound('click');
-  }
-
-  if (soundToggleBtn) soundToggleBtn.addEventListener('click', toggleSound);
-  if (sidebarSoundToggle) sidebarSoundToggle.addEventListener('click', toggleSound);
-
-  // Attach 8-bit menu blips to interactive elements
-  document.querySelectorAll('button, .sidebar-link, .filter-btn, .lang-tab, .hint-pill, .btn-card, .btn-primary').forEach(el => {
-    el.addEventListener('mouseenter', () => playSound('hover'));
-    el.addEventListener('click', () => playSound('click'));
-  });
-}
-
 function playSound(type = 'click') {
-  if (!soundEnabled) return;
-  try {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContext) return;
-    if (!audioCtx) audioCtx = new AudioContext();
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-
-    const now = audioCtx.currentTime;
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-
-    osc.type = 'square';
-
-    if (type === 'hover') {
-      osc.frequency.setValueAtTime(440, now);
-      osc.frequency.setValueAtTime(660, now + 0.02);
-      gain.gain.setValueAtTime(0.04, now);
-      gain.gain.setValueAtTime(0.001, now + 0.04);
-      osc.start(now);
-      osc.stop(now + 0.04);
-    } else if (type === 'click') {
-      osc.frequency.setValueAtTime(587.33, now); // D5
-      osc.frequency.setValueAtTime(880, now + 0.04); // A5
-      gain.gain.setValueAtTime(0.06, now);
-      gain.gain.setValueAtTime(0.001, now + 0.08);
-      osc.start(now);
-      osc.stop(now + 0.08);
-    } else if (type === 'text') {
-      osc.frequency.setValueAtTime(260 + Math.random() * 20, now);
-      gain.gain.setValueAtTime(0.03, now);
-      gain.gain.setValueAtTime(0.001, now + 0.03);
-      osc.start(now);
-      osc.stop(now + 0.03);
-    } else if (type === 'run') {
-      osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(220, now);
-      osc.frequency.exponentialRampToValueAtTime(880, now + 0.12);
-      gain.gain.setValueAtTime(0.06, now);
-      gain.gain.setValueAtTime(0.001, now + 0.12);
-      osc.start(now);
-      osc.stop(now + 0.12);
-    } else if (type === 'success') {
-      const freqs = [523.25, 659.25, 783.99, 1046.50];
-      freqs.forEach((freq, idx) => {
-        const subOsc = audioCtx.createOscillator();
-        const subGain = audioCtx.createGain();
-        subOsc.type = 'square';
-        subOsc.frequency.setValueAtTime(freq, now + idx * 0.08);
-        subGain.gain.setValueAtTime(0.05, now + idx * 0.08);
-        subGain.gain.setValueAtTime(0.001, now + idx * 0.08 + 0.12);
-        subOsc.connect(subGain);
-        subGain.connect(audioCtx.destination);
-        subOsc.start(now + idx * 0.08);
-        subOsc.stop(now + idx * 0.08 + 0.12);
-      });
-    }
-  } catch (e) {
-    // Audio context may not be unlocked yet
-  }
+  // Sound disabled per user preference
+  return;
 }
 
 /* ===================================================================
@@ -765,23 +668,8 @@ function initProjectModal() {
 }
 
 /* ===================================================================
-   11. INTERACTIVE CONTACT FORM & SERVICE PILLS
+   11. INTERACTIVE CONTACT FORM
    =================================================================== */
-function initServicePills() {
-  const pills = document.querySelectorAll('.service-pill-btn');
-  const serviceInput = document.getElementById('selected-service');
-
-  pills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      pills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      if (serviceInput) {
-        serviceInput.value = pill.textContent.trim();
-      }
-    });
-  });
-}
-
 function initContactForm() {
   const contactForm = document.getElementById('contact-form');
   if (!contactForm) return;
