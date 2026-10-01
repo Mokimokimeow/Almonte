@@ -668,13 +668,13 @@ function initProjectModal() {
 }
 
 /* ===================================================================
-   11. INTERACTIVE CONTACT FORM
+   11. INTERACTIVE CONTACT FORM (Web3Forms API Integration)
    =================================================================== */
 function initContactForm() {
   const contactForm = document.getElementById('contact-form');
   if (!contactForm) return;
 
-  contactForm.addEventListener('submit', (e) => {
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const name = document.getElementById('contact-name').value.trim();
@@ -687,17 +687,38 @@ function initContactForm() {
     }
 
     const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = "* TRANSMITTING MESSAGE...";
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = "<span>⏳</span> TRANSMITTING MESSAGE...";
     submitBtn.disabled = true;
 
-    setTimeout(() => {
-      submitBtn.textContent = originalText;
+    try {
+      const formData = new FormData(contactForm);
+      const jsonObject = Object.fromEntries(formData.entries());
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(jsonObject)
+      });
+
+      const result = await response.json();
+
+      if (response.status === 200 && result.success) {
+        contactForm.reset();
+        showToast(`* Thank you, ${name}! Your message was transmitted.`);
+        playSound('success');
+      } else {
+        showToast(result.message || '* Submission failed. Please check your Web3Forms access key.');
+      }
+    } catch (err) {
+      showToast('* Network error. Please try again or reach out directly.');
+    } finally {
+      submitBtn.innerHTML = originalText;
       submitBtn.disabled = false;
-      contactForm.reset();
-      showToast(`* Thank you, ${name}! Your message reached Chriz.`);
-      playSound('success');
-    }, 900);
+    }
   });
 }
 
